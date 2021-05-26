@@ -1,20 +1,23 @@
 package com.nezneika.diylifecycle
 
 import android.os.Bundle
-import android.os.SystemClock
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.nezneika.diylifecycle.databinding.ActivityClockBinding
-import com.nezneika.diylifecycle.viewmodel.TimeViewModel
+import com.nezneika.diylifecycle.viewmodel.TimeWithFactoryViewModel
 
 class ClockActivity : AppCompatActivity() {
 
-    private val viewModel: TimeViewModel by lazy {
-        ViewModelProvider(this).get(TimeViewModel::class.java)
+    private val viewModel: TimeWithFactoryViewModel by lazy {
+        ViewModelProvider(this, TimeWithFactoryViewModel.CustomTimeFactoryViewModel(1))
+            .get(TimeWithFactoryViewModel::class.java)
     }
+
+//    private val viewModel: TimeViewModel by lazy {
+//        ViewModelProvider(this).get(TimeViewModel::class.java)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
